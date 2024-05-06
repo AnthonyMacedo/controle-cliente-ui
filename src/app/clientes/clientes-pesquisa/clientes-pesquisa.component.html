@@ -1,0 +1,78 @@
+<div class="container">
+
+  <h2 style="margin: 15px 0;">Pesquisa de Clientes</h2>
+
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <p-button icon="pi pi-plus" routerLink="/clientes/novo" label="Novo Cliente"></p-button>
+      </div>
+
+      <div class="p-toolbar-group-right">
+        <p-button type="submit" icon="pi pi-search" class="p-button-info" label="Pesquisar"
+          styleClass="p-button-secondary"></p-button>
+      </div>
+    </p-toolbar>
+  </form>
+
+  <div class="card">
+
+    <div class="card-header">
+
+      <div class="col-12">
+        <p-table [value]="clientes" styleClass="p-datatable-striped p-datatable-sm" responsiveLayout="stack" [paginator]="true"
+          [responsive]="true" [breakpoint]="'575px'" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [rows]="filtro.itensPorPagina"
+          [tableStyle]="{'min-width': '20rem'}" (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [totalRecords]="totalRegistros" #tabela>
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>CNPJ</th>
+              <th>Mapa Endereço</th>
+              <th>Opções</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-cliente let-columns="columns">
+            <tr>
+              <td><span class="p-column-title">Nome</span>{{cliente.nome}}</td>
+
+              <td><span class="p-column-title">Cnpj</span>
+                {{cliente.cnpj}}
+              </td>
+
+              <td>
+                <span class="p-column-title">Mapa Endereço</span>
+                <p-button title="Localização no mapa" icon="pi pi-map" styleClass="p-button-warning"></p-button>
+              </td>
+
+              <td class="col-acao">
+                <button pButton icon="pi pi-pencil" pTooltip="Editar" class="p-button-sm" tooltipPosition="top"
+                  placeholder="Top"></button>
+                <button pButton class="p-button-danger p-button-sm" icon="pi pi-trash" pTooltip="Excluir"
+                  tooltipPosition="top" placeholder="Top"></button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="5">
+                Nenhum cliente encontrado
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+</div>

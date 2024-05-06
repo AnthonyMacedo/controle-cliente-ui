@@ -1,0 +1,18 @@
+<nav class="navbar">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <a href="javascript:;" class="navbar-toogle" (click)="toggleMenu()"><i class="pi pi-bars"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <ul class="navbar-menu" [hidden]="!exibirMenu">
+      <li class="navbar-menu-item" routerLinkActive="ativo"><a routerLink="clientes">Clientes</a></li>
+      <li class="navbar-menu-item" routerLinkActive="ativo"><a routerLink="enderecos">Endereços</a></li>
+      <li class="navbar-menu-item"><a href="javascript:;">Logout</a></li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+label {
+  font-weight: bold;
+  margin: 0rem 0.3rem;
+}
+
+.content {
+  margin-top: 60px !important;
+}
+
+.card {
+  margin: 10px 0;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  margin-top: 10px;
+}
+
+/* .box {
+  margin: 0 auto;
+  padding: 20px;
+
+
+
+  height: 100vh;
+} */
+
+.col-valor {
+  width: 120px;
+  text-align: right !important;
+}
+
+.col-data {
+  width: 161px;
+  text-align: center;
+}
+
+.col-acao {
+  width: 140px;
+  align-items: center;
+}
+
+.col-acao>.p-button {
+  margin: 0 2px;
+}
+
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1100px;
+    margin: 0 auto;
+  }
+}
+
+/* Classes primeflex */
+/* .field {
+  margin-bottom: 0.5rem !important;
+} */
+
+
+.p-dropdown.p-component{
+  border-radius: 0.375rem;
+  height: 37.6px;
+  width: 100% !important;
+}
+.p-autocomplete.p-component{
+  width: 100% !important;
+}
+
+.p-button {
+  margin: 0 5px;
+}
+
+.p-toolbar {
+  border-top: gray solid;
+  margin-top: 10px;
+  background-color: #f3f4f5 !important;
+}
+
+.card-header {
+  border-top: gray solid;
+}
+
+.card-body {
+  margin-bottom: 10px;
+}
+
+.p-datatable .p-datatable-thead > tr > th  {
+  background-color: rgb(228, 227, 227);
+  border-bottom: 2px solid rgb(172, 172, 172);
+  border-radius: 2px;
+
+}
+
+.p-datatable {
+  border: 2px solid rgb(172, 172, 172);
+  border-radius: 5px;
+}
+

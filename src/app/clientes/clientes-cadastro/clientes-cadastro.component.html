@@ -1,0 +1,137 @@
+<div class="container">
+  <form autocomplete="off" #clienteForm="ngForm" (ngSubmit)="adicionarCliente(clienteForm)">
+
+    <h2 style="margin: 15px 0;">Novo Cliente</h2>
+
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <p-button type="submit" label="Novo" icon="pi pi-plus" (onClick)="novo(clienteForm)"></p-button>
+        <p-button type="submit" label="Salvar" icon="pi pi-save" styleClass="p-button-success"
+          [disabled]="nome.invalid!"></p-button>
+      </div>
+
+      <div class="p-toolbar-group-right">
+        <p-button icon="pi pi-search" class="p-button-info" routerLink="/clientes" label="Pesquisar"></p-button>
+      </div>
+    </p-toolbar>
+
+    <div class="card">
+
+      <div class="card-header">
+        <div>
+          <h4>Dados Principais</h4>
+        </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="row" style="padding-top: 10px;">
+
+          <div class="col-md-6">
+            <label class="form-label">Nome</label>
+            <input pInputText type="text" aria-describedby="nome-help" name="nome" #nome="ngModel" required="true"
+              minlength="3" class="form-control" [(ngModel)]="cliente.nome" />
+
+            <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
+            <app-message [control]="nome" error="minlength"
+              text="Mínimo de {{ nome.errors?.['minlength']?.requiredLength }} caracteres"></app-message>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">CNPJ</label>
+            <p-inputMask mask="99.999.999/9999-99" name="cnpj" #cnpj="ngModel" [required]="true"
+              styleClass="form-control" [(ngModel)]="cliente.cnpj"></p-inputMask>
+
+            <app-message [control]="cnpj" error="required" text="Informe o cnpj"></app-message>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="endereco">
+
+        <div class="card-header">
+          <h4>Endereço</h4>
+        </div>
+
+        <div class="card-body">
+
+
+
+          <div class="row">
+
+            <div class="col-md-3">
+              <label class="form-label">CEP</label>
+              <p-inputMask mask="99999-999" name="cep" #cep="ngModel" styleClass="form-control" [required]="true"
+                [(ngModel)]="endereco.cep"></p-inputMask>
+
+              <app-message [control]="cep" error="required" text="Informe o cep"></app-message>
+            </div>
+
+            <div class="col-md-9">
+              <label class="form-label">Logradouro</label>
+              <input pInputText type="text" name="logradouro" class="form-control" [(ngModel)]="endereco.logradouro" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Complemento</label>
+              <input pInputText type="text" name="complemento" class="form-control"
+                [(ngModel)]="endereco.complemento" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Bairro</label>
+              <input pInputText type="text" name="bairro" class="form-control" [(ngModel)]="endereco.bairro" />
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Número</label>
+              <input pInputText type="text" name="numero" class="form-control" [(ngModel)]="endereco.numero" />
+            </div>
+
+
+
+            <div class="col-md-4">
+              <label class="form-label">Cidade</label>
+              <br />
+              <p-autoComplete [minLength]="2"  field="nome" [(ngModel)]="cidadeSelecionada" inputStyleClass="form-control"
+                [suggestions]="cidadesFiltradas" (completeMethod)="filtrarCidades($event)" [ngModelOptions]="{standalone: true}"></p-autoComplete>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label"> Estado</label>
+              <br />
+              <p-autoComplete [minLength]="2"  field="nome" [(ngModel)]="estadoSelecionado" inputStyleClass="form-control"
+                [suggestions]="estadosFiltrados" (completeMethod)="filtrarEstados($event)" [ngModelOptions]="{standalone: true}"></p-autoComplete>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12" >
+              <br/>
+              <p-button label="Adicionar Geolocalização" icon="pi pi-map" styleClass="p-button-success"  (click)="abrirDialog()"></p-button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+
+  <p-dialog header="Mapa" [(visible)]="showDialog"[modal]="true">
+    <google-map height="450px"
+            width="600px"
+            [center]="center"
+            [zoom]="zoom"
+            (mapClick)="moveMap($event)"
+            (mapMousemove)="move($event)">
+  </google-map>
+</p-dialog>
+
+</div>
